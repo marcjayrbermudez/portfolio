@@ -10,6 +10,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Fonts: Inter para sa text, JetBrains Mono para sa code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <!-- Sariling CSS: nasa ilalim ng Bootstrap para ma-override ito -->
   <link href="css/style.css" rel="stylesheet">
 </head>
@@ -19,7 +23,7 @@
   <!-- ============ NAVBAR ============ -->
   <nav id="mainNav" class="navbar navbar-expand-xl fixed-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#home"> Marc Jayr Bermudez </a>
+      <a class="navbar-brand fw-bold" href="#home" aria-label="Marc Jayr Bermudez, home">&lt;Marc/&gt;</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navLinks" aria-controls="navLinks"
@@ -40,10 +44,13 @@
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           <li class="nav-item"><a class="nav-link" href="#reflection">Reflection</a></li>
         </ul>
-        <button id="themeToggle" class="btn btn-sm btn-outline-secondary ms-lg-3 mt-2 mt-lg-0"
-                type="button" aria-label="Toggle dark mode">
-          <i class="bi bi-moon-stars"></i>
-        </button>
+        <div class="d-flex align-items-center gap-2 ms-xl-3 mt-2 mt-xl-0">
+          <button id="themeToggle" class="btn btn-sm btn-outline-secondary"
+                  type="button" aria-label="Toggle dark mode">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+          <a href="#contact" class="btn btn-accent btn-hire">Hire Me</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -53,7 +60,8 @@
     <div class="container">
       <div class="row align-items-center g-5">
         <div class="col-lg-7">
-          <p class="text-accent fw-semibold mb-2">Hi, I'm</p>
+          <span class="status-pill mb-3"><span class="dot"></span> Available for Work</span>
+          <p class="hello mb-2 mt-3">// Hi, I'm</p>
           <h1 class="display-4 fw-bold">Marc Jayr Bermudez</h1>
           <!-- Target IT position (STEP 1) -->
           <h2 class="h4 text-body-secondary mb-4">Aspiring Software Engineer</h2>
@@ -75,8 +83,21 @@
           </div>
         </div>
         <div class="col-lg-5 text-center">
-          <!-- Profile photo na walang background (transparent PNG) -->
-          <img src="assets/profile.png" alt="Photo of Marc Jayr Bermudez" class="profile-photo">
+          <div class="hero-visual">
+            <!-- Profile photo na walang background (transparent PNG) -->
+            <img src="assets/profile.png" alt="Photo of Marc Jayr Bermudez" class="profile-photo">
+            <!-- Code window: maikling "profile" ko na parang JavaScript object -->
+            <div class="code-window" aria-hidden="true">
+              <div class="code-head"><i></i><i></i><i></i><span>developer.js</span></div>
+<pre><span class="c-key">const</span> <span class="c-var">marc</span> = {
+  name: <span class="c-str">'Marc Jayr Bermudez'</span>,
+  role: <span class="c-str">'Software Engineer'</span>,
+  stack: [<span class="c-str">'Java'</span>, <span class="c-str">'Python'</span>, <span class="c-str">'PHP'</span>, <span class="c-str">'JS'</span>],
+  learning: <span class="c-str">'always'</span>,
+  <span class="c-com">// open to opportunities</span>
+};</pre>
+            </div>
+          </div>
         </div>
       </div>
     </div>
