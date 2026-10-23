@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marc Jayr Bermudez - Resume</title>
+  <!--
+    Resume source. To update resume.pdf: edit this file, open it in Chrome or Edge,
+    press Ctrl + P, choose "Save as PDF", paper size A4, margins "None",
+    and turn ON "Background graphics". Save it as assets/resume.pdf.
+  -->
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: #1f2937;
+      font-size: 9.5pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page { width: 210mm; height: 297mm; overflow: hidden; padding: 11mm 15mm; margin: 0 auto; background: #fff; }
+
+    /* Header */
+    header { display: flex; align-items: center; gap: 18px; padding-bottom: 12px; border-bottom: 3px solid #1e3a5f; }
+    .photo { width: 26mm; height: 26mm; border-radius: 50%; object-fit: cover; background: #e8eef5; border: 2px solid #1e3a5f; flex: none; }
+    h1 { margin: 0; font-size: 24pt; letter-spacing: 0.5px; color: #1e3a5f; }
+    .role { margin: 2px 0 8px; font-size: 12pt; font-weight: 600; color: #2b6cb0; }
+    .contact { display: flex; flex-wrap: wrap; gap: 3px 16px; font-size: 9.5pt; color: #374151; }
+    .contact a { color: #374151; text-decoration: none; }
+
+    /* Sections */
+    h2 {
+      margin: 10px 0 4px;
+      font-size: 11pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #1e3a5f;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 3px;
+    }
+    p { margin: 0 0 4px; }
+    ul { margin: 2px 0 0; padding-left: 18px; }
+    li { margin-bottom: 1px; }
+
+    .item { margin-bottom: 4px; }
+    .item-head { display: flex; justify-content: space-between; gap: 12px; }
+    .item-title { font-weight: 700; }
+    .item-date { color: #6b7280; white-space: nowrap; font-size: 9.5pt; }
+    .item-sub { color: #4b5563; font-style: italic; }
+
+    .skills { display: grid; grid-template-columns: 120px 1fr; gap: 3px 12px; }
+    .skills dt { font-weight: 700; }
+    .skills dd { margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <img class="photo" src="photo.png" alt="Marc Jayr Bermudez">
+      <div>
+        <h1>MARC JAYR BERMUDEZ</h1>
+        <p class="role">Aspiring Software Engineer</p>
+        <div class="contact">
+          <span>&#9742; 0915 312 5073</span>
+          <span>&#9993; <a href="mailto:marcjayrbermudez@gmail.com">marcjayrbermudez@gmail.com</a></span>
+          <span>&#9906; Parañaque City, Philippines</span>
+          <span>in <a href="https://www.linkedin.com/in/marc-jayr-bermudez-31134a446/">linkedin.com/in/marc-jayr-bermudez-31134a446</a></span>
+        </div>
+      </div>
+    </header>
+
+    <h2>Career Objective</h2>
+    <p>
+      BSIT student with basic skills in programming logic, PHP, Python, Java, and C++, along with HTML, CSS, and MySQL.
+      Seeking an entry-level or trainee role in Software Engineering where I can apply my skills, learn from
+      experienced developers, and contribute to building reliable software.
+    </p>
+
+    <h2>Education</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Bachelor of Science in Information Technology</span>
+        <span class="item-date">2024 – 2027</span>
+      </div>
+      <div class="item-sub">Datamex College of Saint Adeline</div>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Senior High School: Humanities and Social Sciences (HUMSS)</span>
+        <span class="item-date">Graduated 2020</span>
+      </div>
+      <div class="item-sub">Parañaque National High School</div>
+    </div>
+
+    <h2>Technical Skills</h2>
+    <dl class="skills">
+      <dt>Programming</dt><dd>Basic programming logic (variables, if/else, loops, functions); PHP, Python, Java, C++ (basics)</dd>
+      <dt>Web</dt><dd>HTML, CSS</dd>
+      <dt>Database</dt><dd>MySQL (basic)</dd>
+      <dt>Hardware</dt><dd>Arduino (sensors, LCD, buzzer)</dd>
+      <dt>Tools</dt><dd>Microsoft Office (Word, Excel, PowerPoint), VS Code</dd>
+    </dl>
+
+    <h2>Projects</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Eskinita Apparel: Inventory and Online Ordering System</span>
+        <span class="item-date">Team Leader</span>
+      </div>
+      <ul>
+        <li>Led a 7-member team in building a web-based e-commerce system for a local streetwear brand: product catalog with stock tracking, shopping cart, checkout, order history, and an admin dashboard.</li>
+        <li>Built with HTML, CSS, JavaScript, Node.js, Express.js, and MySQL (XAMPP); evaluated positively by 200 survey respondents.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">OnlyJobs: Job Finder Website</span>
+        <span class="item-date">Team project</span>
+      </div>
+      <ul>
+        <li>Job finder website with user login (User ID and password or Gmail); planned the login process with a flowchart before building it.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Gas Leakage Alarm System</span>
+        <span class="item-date">Team project</span>
+      </div>
+      <ul>
+        <li>Arduino device that sounds a buzzer and shows an LCD warning when gas is detected (Arduino Uno, MQ-5 sensor, LCD, buzzer).</li>
+        <li>Troubleshot a failed code upload step by step, found the board was defective, and rebuilt the system with a new Arduino Uno.</li>
+      </ul>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Personal Portfolio Website</span>
+        <span class="item-date">2026</span>
+      </div>
+      <ul>
+        <li>Responsive portfolio built with HTML, CSS, and JavaScript, with dark mode, a skills filter, a certificate viewer, and a validated contact form.</li>
+      </ul>
+    </div>
+
+    <h2>Certificates and Trainings <span style="font-size: 8.5pt; font-weight: 400; letter-spacing: 0; text-transform: none; color: #6b7280;">(online webinars by Ethel Programming Computer Programming Services, 2026)</span></h2>
+    <ul>
+      <li><strong>Linux &amp; System Administration: Master the Command Line</strong> (2 hrs, Aug 7)</li>
+      <li><strong>Next Gen Arduino: Innovation Through Embedded Technology</strong> (1 hr, Aug 6)</li>
+      <li><strong>The Future of Network Security, AI, Automation and Zero Trust</strong> (2 hrs, Aug 5)</li>
+      <li><strong>Digital Office Mastery: Essential Skills for Computer &amp; Administrative Staff</strong> (1 hr, Aug 5)</li>
+      <li><strong>Code, Create, Deploy: Building and Publishing a Website</strong> (1 hr, Aug 4)</li>
+    </ul>
+
+    <h2>Soft Skills</h2>
+    <p>Teamwork · Communication · Time management · Problem-solving · Patience · Attention to detail · Willingness to learn</p>
+
+    <h2>References</h2>
+    <p>Available upon request.</p>
+
+  </div>
+</body>
+</html>
