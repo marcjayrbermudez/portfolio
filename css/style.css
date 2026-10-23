@@ -206,11 +206,13 @@ body::before {
   text-align: left;
   overflow: hidden;
 }
+/* Nasa ibaba ng photo (sa may suit) para hindi matakpan ang mukha */
+.hero-visual { margin-bottom: 110px; }
 .hero-visual .code-window {
   position: absolute;
-  left: -60px;
-  bottom: 24px;
-  width: 340px;
+  left: -70px;
+  bottom: -110px;
+  width: 350px;
 }
 .code-head {
   display: flex;
@@ -231,10 +233,11 @@ body::before {
   margin: 0;
   padding: 12px 16px 14px;
   font-family: "JetBrains Mono", Consolas, monospace;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   line-height: 1.6;
   color: #e2e8f0;
   white-space: pre;
+  overflow: hidden;           /* walang scrollbar sa loob ng code window */
 }
 .c-key { color: #c084fc; }
 .c-var { color: #22d3ee; }
@@ -418,7 +421,9 @@ footer {
 
 /* ---------- 17. Phone ---------- */
 @media (max-width: 991px) {
-  .hero-visual .code-window { left: 50%; transform: translateX(-50%); bottom: -10px; }
+  /* Sa maliit na screen, nasa ilalim na ng photo ang code window, hindi nakapatong */
+  .hero-visual { margin-bottom: 0; }
+  .hero-visual .code-window { position: relative; left: auto; bottom: auto; margin: -20px auto 0; }
 }
 @media (max-width: 576px) {
   .section { padding: 56px 0; }
