@@ -233,7 +233,7 @@
     <section id="problem-solving" class="section section-alt">
       <div class="container">
         <h2 class="section-title">Problem-Solving</h2>
-        <p class="text-body-secondary">Troubleshooting cases from my Arduino projects and computer use. Click a case to read it.</p>
+        <p class="text-body-secondary">Bugs I found and fixed while building my projects. Click a case to read it.</p>
 
         <!-- Bootstrap accordion: bawat .accordion-item ay isang case -->
         <div class="accordion" id="casesAccordion">
@@ -242,16 +242,16 @@
           <div class="accordion-item">
             <h3 class="accordion-header">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#case1">
-                Case 1: Code will not upload to the Arduino (Gas Leakage Alarm project)
+                Case 1: Cancelled orders did not return the stock (mc.sneaker)
               </button>
             </h3>
             <div id="case1" class="accordion-collapse collapse show" data-bs-parent="#casesAccordion">
               <div class="accordion-body">
-                <p><strong>Problem:</strong> While building our Gas Leakage Alarm System, we got an error every time we tried to upload the code to the Arduino Uno.</p>
-                <p><strong>Possible Causes:</strong> Wrong board or COM port selected in the Arduino IDE, a bad USB cable, a mistake in the code, or a defective Arduino board.</p>
-                <p><strong>Diagnostic Procedure:</strong> We checked that the correct board (Arduino Uno) and COM port were selected, tried the USB cable again, and tested with a simple example code. The upload still failed, even with code that should work, so the problem was not in our code or settings.</p>
-                <p><strong>Solution:</strong> We found that the Arduino Uno itself was defective. We replaced it with a new Arduino Uno, uploaded the code successfully, and rebuilt the alarm. It worked perfectly.</p>
-                <p class="mb-0"><strong>Lesson Learned:</strong> Troubleshoot one thing at a time: settings, cable, code, then hardware. Testing with a simple example helps prove if the problem is the code or the board.</p>
+                <p><strong>Problem:</strong> When I cancelled an order in My Orders, the sneakers in that order were not added back to the stock. The shop still showed "Only 3 left" even though nothing was sold.</p>
+                <p><strong>Possible Causes:</strong> The cancel button only changed the order status, the stock was not updated, or the shop page was not redrawn after cancelling.</p>
+                <p><strong>Diagnostic Procedure:</strong> I added an item to the cart, placed the order, and checked the stock label. Then I cancelled the order and checked again. I read the code of the cancel button and saw that it only set <code>order.status = "Cancelled"</code>.</p>
+                <p><strong>Solution:</strong> In the cancel button, I looped through the items of the order and added each quantity back to the product's stock, then called <code>renderProducts()</code> to update the shop page.</p>
+                <p class="mb-0"><strong>Lesson Learned:</strong> When one action changes the data, I must update every related part, not just the one I see. Testing the full flow (order, then cancel, then check) helps find these bugs.</p>
               </div>
             </div>
           </div>
@@ -260,16 +260,16 @@
           <div class="accordion-item">
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#case2">
-                Case 2: LED does not light up in my Arduino circuit
+                Case 2: Stock went back to full after refreshing the page (mc.sneaker)
               </button>
             </h3>
             <div id="case2" class="accordion-collapse collapse" data-bs-parent="#casesAccordion">
               <div class="accordion-body">
-                <p><strong>Problem:</strong> The code uploaded without errors, but the LED did not turn on.</p>
-                <p><strong>Possible Causes:</strong> LED placed backwards, wrong pin number in the code, loose jumper wire, missing resistor, or a damaged LED.</p>
-                <p><strong>Diagnostic Procedure:</strong> I compared the pin number in my code with the pin where the wire was connected. I checked the LED direction: the long leg (positive) must go to the Arduino pin and the short leg (negative) to GND. I also tested the LED with the simple Blink example.</p>
-                <p><strong>Solution:</strong> The LED was placed backwards and the code used pin 12 while my wire was on pin 13. I flipped the LED and changed the code to the correct pin. The LED turned on.</p>
-                <p class="mb-0"><strong>Lesson Learned:</strong> The code and the wiring must match. Testing with a simple example helps me find out if the problem is in the hardware or the code.</p>
+                <p><strong>Problem:</strong> After placing an order, the stock was correct. But when I refreshed the page, all sneakers showed full stock again.</p>
+                <p><strong>Possible Causes:</strong> The stock was only changed in memory, the orders were not saved, or the saved orders were not used when the page loads.</p>
+                <p><strong>Diagnostic Procedure:</strong> I opened DevTools (F12), went to Application, then Local Storage, and saw that the orders were saved correctly. So the problem was that the product list in <code>products.js</code> always starts with the original stock.</p>
+                <p><strong>Solution:</strong> When the page starts, the app now goes through all saved orders that are not cancelled and subtracts their quantities from the stock.</p>
+                <p class="mb-0"><strong>Lesson Learned:</strong> Data in a variable is lost on refresh. Only the data saved in localStorage stays, so the app must rebuild its state from the saved data when it starts.</p>
               </div>
             </div>
           </div>
@@ -278,16 +278,16 @@
           <div class="accordion-item">
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#case3">
-                Case 3: Sensor gives wrong or strange readings
+                Case 3: Could not save an edited student (Student Grade Management System)
               </button>
             </h3>
             <div id="case3" class="accordion-collapse collapse" data-bs-parent="#casesAccordion">
               <div class="accordion-body">
-                <p><strong>Problem:</strong> My sensor showed random numbers that did not change correctly, even when I covered it or moved it.</p>
-                <p><strong>Possible Causes:</strong> Loose wires, sensor connected to the wrong pin, missing GND or power connection, or wrong code for reading the sensor.</p>
-                <p><strong>Diagnostic Procedure:</strong> I opened the Serial Monitor to see the values from the sensor. I checked that VCC was connected to 5V, GND to GND, and the signal wire to the pin used in the code. I pressed each wire on the breadboard to see if the values changed.</p>
-                <p><strong>Solution:</strong> The GND wire was loose on the breadboard. After I pushed it in firmly, the readings became stable and changed correctly.</p>
-                <p class="mb-0"><strong>Lesson Learned:</strong> The Serial Monitor is very useful for troubleshooting because it shows what the Arduino is actually reading. Loose wires can cause random values.</p>
+                <p><strong>Problem:</strong> When I edited a student's grades and clicked Save, the app showed "That student number is already in the list," even though I did not change the student number.</p>
+                <p><strong>Possible Causes:</strong> The duplicate check was comparing the student with themselves, or the edit was being treated as adding a new student.</p>
+                <p><strong>Diagnostic Procedure:</strong> I tested adding a new student (it worked) and editing a student (it failed). Then I read the <code>validate()</code> function and saw that it checked every student in the list, including the one being edited.</p>
+                <p><strong>Solution:</strong> I changed the check so it skips the student being edited, using <code>s.id !== editingId</code>. Now editing works, and real duplicates are still blocked.</p>
+                <p class="mb-0"><strong>Lesson Learned:</strong> Validation rules can be different when adding and when editing. I should test both cases.</p>
               </div>
             </div>
           </div>
@@ -296,16 +296,16 @@
           <div class="accordion-item">
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#case4">
-                Case 4: Computer is very slow
+                Case 4: A grade of 87.90 got the wrong equivalent grade (Student Grade Management System)
               </button>
             </h3>
             <div id="case4" class="accordion-collapse collapse" data-bs-parent="#casesAccordion">
               <div class="accordion-body">
-                <p><strong>Problem:</strong> The computer became very slow. Programs took a long time to open and sometimes froze.</p>
-                <p><strong>Possible Causes:</strong> Too many programs running, a program using too much memory or CPU, too many startup apps, or a full hard drive.</p>
-                <p><strong>Diagnostic Procedure:</strong> I pressed Ctrl + Shift + Esc to open Task Manager. I sorted the list by CPU and Memory to see which programs were using the most resources. I also checked the Startup tab and the free space on the drive.</p>
-                <p><strong>Solution:</strong> I closed the programs I was not using, ended a program that was using too much memory, and disabled unnecessary startup apps. I also deleted temporary files to free up space. The computer became faster.</p>
-                <p class="mb-0"><strong>Lesson Learned:</strong> Task Manager helps find the real cause before restarting or reinstalling. Only end programs that I know are safe to close.</p>
+                <p><strong>Problem:</strong> While testing, I expected a final grade of 87.90 to be 1.75, but the app showed 2.00.</p>
+                <p><strong>Possible Causes:</strong> A wrong formula for the final grade, a rounding problem, or a mistake in my own expected answer.</p>
+                <p><strong>Diagnostic Procedure:</strong> I computed the final grade by hand: 85 × 0.30 + 88 × 0.30 + 90 × 0.40 = 87.90, so the formula was correct. Then I checked the grading scale: 1.75 starts at 88, so 87.90 really belongs to 2.00.</p>
+                <p><strong>Solution:</strong> The app was correct and my test was wrong. I fixed my test and added the full grading scale to the app and the README so the rules are clear.</p>
+                <p class="mb-0"><strong>Lesson Learned:</strong> Before fixing code, I should check if my expected result is really correct. Computing by hand is a good way to check.</p>
               </div>
             </div>
           </div>
@@ -314,16 +314,16 @@
           <div class="accordion-item">
             <h3 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#case5">
-                Case 5: Connected to Wi-Fi but no internet
+                Case 5: Due dates showed the wrong day (To-Do List App)
               </button>
             </h3>
             <div id="case5" class="accordion-collapse collapse" data-bs-parent="#casesAccordion">
               <div class="accordion-body">
-                <p><strong>Problem:</strong> The computer showed it was connected to Wi-Fi, but websites would not load.</p>
-                <p><strong>Possible Causes:</strong> Problem with the router, wrong IP address, DNS problem, or the internet service itself was down.</p>
-                <p><strong>Diagnostic Procedure:</strong> I checked if other devices could use the internet. Then I opened Command Prompt and used <code>ipconfig</code> to check the IP address, and <code>ping 8.8.8.8</code> to test the connection to the internet.</p>
-                <p><strong>Solution:</strong> I ran <code>ipconfig /release</code>, <code>ipconfig /renew</code>, and <code>ipconfig /flushdns</code>, then restarted the router. After that, websites loaded normally.</p>
-                <p class="mb-0"><strong>Lesson Learned:</strong> "Connected" does not always mean there is internet. Testing step by step, from the device to the router to the internet, helps find where the problem is.</p>
+                <p><strong>Problem:</strong> A task due on October 22 could be shown as due one day earlier, and today's tasks could be marked as overdue.</p>
+                <p><strong>Possible Causes:</strong> Wrong date format from the date picker, or the time zone. JavaScript reads a date like <code>"2026-10-22"</code> as midnight in UTC, which is 8 hours behind Philippine time.</p>
+                <p><strong>Diagnostic Procedure:</strong> I printed <code>new Date("2026-10-22")</code> in the Console and saw that it was not midnight in Philippine time, so the date moved when it was formatted.</p>
+                <p><strong>Solution:</strong> I split the date into year, month, and day and made the date with <code>new Date(y, m - 1, d)</code>, which uses local time. For overdue tasks, I compare dates as text in the same "YYYY-MM-DD" format, which works without time zones.</p>
+                <p class="mb-0"><strong>Lesson Learned:</strong> Dates and time zones can cause hidden bugs. The Console is a quick way to see what a value really is.</p>
               </div>
             </div>
           </div>
